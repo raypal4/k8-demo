@@ -185,3 +185,23 @@ kubectl logs <pod_name> -n jenkins
 ```
 kubectl apply -f deployment.yaml
 ```
+
+Create service account
+
+```
+kubectl create -f service-account.yaml
+```
+
+# dockerhub commands
+
+```
+docker build -t hello-world .
+docker tag hello-world raypal4/hello-world
+docker push raypal4/hello-world
+```
+
+clustor binding
+
+```
+kubectl create clusterrolebinding jenkins --clusterrole cluster-admin --serviceaccount=jenkins:default
+```
