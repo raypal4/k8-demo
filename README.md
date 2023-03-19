@@ -88,3 +88,94 @@ Port Forwarding
 ```
 kubectl port-forward podname 80:80
 ```
+
+# Basic Jenkins Setup
+
+Create Namespace
+
+```
+kubectl create namespace jenkins
+```
+
+Create basic jenkins-deployment.yaml file
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkins
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jenkins
+  template:
+    metadata:
+      labels:
+        app: jenkins
+    spec:
+      containers:
+      - name: jenkins
+        image: jenkins/jenkins:lts-jdk11
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - name: jenkins-home
+          mountPath: /var/jenkins_home
+      volumes:
+      - name: jenkins-home
+        emptyDir: { }
+```
+
+create the jenkins deployment
+
+```
+kubectl create -f jenkins-deployment.yaml -n jenkins
+```
+
+Create basic service.yaml file
+
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: jenkins
+spec:
+  type: NodePort
+  ports:
+  - port: 8080
+    targetPort: 8080
+  selector:
+    app: jenkins
+```
+
+Create the service
+
+```
+kubectl create -f service.yaml -n jenkins
+```
+
+Validate service creation
+
+```
+kubectl get services -n jenkins
+```
+
+Find name and ip of pod
+
+```
+kubectl get pods -n jenkins -o wide
+```
+
+Port forward to 8080
+
+```
+kubectl -n jenkins port-forward <pod_name> 8080:8080
+localhost:8080
+```
+
+Get admin password for initial setup
+
+```
+kubectl logs <pod_name> -n jenkins
+```
