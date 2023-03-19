@@ -1,10 +1,10 @@
 pipeline {
-    agent {
-        docker {
-            image 'docker:latest'
-            args '-v /var/run/docker.sock:/var/run/docker.sock'
-        }
-    }
+    // agent {
+    //     docker {
+    //         image 'docker:latest'
+    //         args '-v /var/run/docker.sock:/var/run/docker.sock'
+    //     }
+    // }
     stages {
         stage('Build') {
             steps {
@@ -16,7 +16,7 @@ pipeline {
                 sh 'docker push raypal4/hello-world:latest'
             }
         }
-        
+
         // stage('Deploy') {
         //     steps {
         //         withKubeConfig([credentialsId: 'kube-config']) {
