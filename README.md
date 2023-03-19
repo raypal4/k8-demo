@@ -209,7 +209,8 @@ docker exec -it -u root b388a912eb0f /bin/bash
 ```
 
 Debian docker installation steps
-'''
+
+```
 apt-get install \
  ca-certificates \
  curl \
@@ -226,7 +227,4 @@ echo \
 apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 service docker start
-
-```
-
 ```
