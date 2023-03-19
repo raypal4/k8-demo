@@ -16,6 +16,7 @@ pipeline {
                 sh 'docker push raypal4/hello-world:latest'
             }
         }
+        
         // stage('Deploy') {
         //     steps {
         //         withKubeConfig([credentialsId: 'kube-config']) {
