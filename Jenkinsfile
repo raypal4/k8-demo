@@ -1,9 +1,6 @@
 pipeline {
     agent {
-        docker {
-            image 'python:3-alpine'
-            args '-p 5000:5000'
-        }
+        sh 'sudo apt-get update'
     }
     stages {
         stage('Build') {
