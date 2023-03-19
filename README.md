@@ -25,17 +25,17 @@ choco install minikube
 
 ## Common Kubernetes Commands
 
-Create Namespace
-
-```
-kubectl create namespace mynamespace
-```
-
 To create nodes/multiple nodes
 
 ```
 minikube start
 minikube start --nodes 2 -p nodes
+```
+
+Create Namespace
+
+```
+kubectl create namespace mynamespace
 ```
 
 View list of nodes
@@ -178,4 +178,10 @@ Get admin password for initial setup
 
 ```
 kubectl logs <pod_name> -n jenkins
+```
+
+# Jenkins Setup with k8 custom
+
+```
+kubectl apply -f deployment.yaml
 ```
